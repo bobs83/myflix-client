@@ -28,12 +28,31 @@ export const MainView = () => {
   }, []);
 
   const [selectedMovie, setSelectedMovie] = useState(null);
+
   if (selectedMovie) {
+    let similarMovies = movies.filter((movie) => {
+      return (
+        movie.id !== selectedMovie.id && movie.genre === selectedMovie.genre
+      );
+    });
     return (
-      <MovieView
-        movie={selectedMovie}
-        onBackClick={() => setSelectedMovie(null)}
-      />
+      <>
+        <MovieView
+          movie={selectedMovie}
+          onBackClick={() => setSelectedMovie(null)}
+        />
+        <hr />
+        <h2>Similar Movies</h2>
+        {similarMovies.map((movie) => (
+          <MovieCard
+            key={movie.id}
+            movie={movie}
+            onMovieClick={(newSelectedMovie) => {
+              setSelectedMovie(newSelectedMovie);
+            }}
+          />
+        ))}
+      </>
     );
   }
 
