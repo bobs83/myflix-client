@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import { LoginView } from "../login-view/login-view";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [user, setUser] = useState(null);
+
   useEffect(() => {
     fetch("https://mybestflix-9620fb832942.herokuapp.com/movies")
       .then((response) => response.json())
@@ -27,7 +31,13 @@ export const MainView = () => {
       });
   }, []);
 
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  if (!user) {
+    return <LoginView onLoggedIn={(user) => setUser(user)} />;
+  }
+
+  if (movies.length === 0) {
+    return <div>The movie list is empty!</div>;
+  }
 
   if (selectedMovie) {
     let similarMovies = movies.filter((movie) => {
@@ -35,6 +45,7 @@ export const MainView = () => {
         movie.id !== selectedMovie.id && movie.genre === selectedMovie.genre
       );
     });
+
     return (
       <>
         <MovieView
