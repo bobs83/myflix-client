@@ -68,18 +68,21 @@ export const MainView = () => {
   }
 
   return (
-    <div>
-      {movies.map((movie) => {
-        return (
-          <MovieCard
-            key={movie.id}
-            movie={movie}
-            onMovieClick={(newSelectedMovie) => {
-              setSelectedMovie(newSelectedMovie);
-            }}
-          />
-        );
-      })}
-    </div>
+    <>
+      <div>
+        {movies.map((movie) => {
+          return (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              onMovieClick={(newSelectedMovie) => {
+                setSelectedMovie(newSelectedMovie);
+              }}
+            />
+          );
+        })}
+      </div>
+      <button onClick={() => setUser(null)}>Logout</button>
+    </>
   );
 };
