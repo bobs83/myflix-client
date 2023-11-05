@@ -4,15 +4,23 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 
 export const MainView = () => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
 
   useEffect(() => {
-    fetch("https://mybestflix-9620fb832942.herokuapp.com/movies")
+    if (!token) {
+      return;
+    }
+    fetch("https://mybestflix-9620fb832942.herokuapp.com/movies", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Movies from API :", data);
+        console.log("Movies from API:", data);
         const moviesFromApi = data.map((movie) => {
           return {
             id: movie._id,
@@ -28,15 +36,21 @@ export const MainView = () => {
           };
         });
         setMovies(moviesFromApi);
+      })
+      .catch((error) => {
+        console.error("Error fetching movies:", error);
       });
-  }, []);
+  }, [token]);
 
   if (!user) {
-    return <LoginView onLoggedIn={(user) => setUser(user)} />;
-  }
-
-  if (movies.length === 0) {
-    return <div>The movie list is empty!</div>;
+    return (
+      <LoginView
+        onLoggedIn={(user, token) => {
+          setUser(user);
+          setToken(token);
+        }}
+      />
+    );
   }
 
   if (selectedMovie) {
@@ -82,7 +96,15 @@ export const MainView = () => {
           );
         })}
       </div>
-      <button onClick={() => setUser(null)}>Logout</button>
+      <button
+        onClick={() => {
+          setUser(null);
+          setToken(null);
+          localStorage.clear();
+        }}
+      >
+        Logout
+      </button>
     </>
   );
 };
