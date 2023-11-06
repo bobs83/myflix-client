@@ -13,13 +13,18 @@ export const LoginView = ({ onLoggedIn }) => {
       Password: password,
     };
 
-    fetch("https://mybestflix-9620fb832942.herokuapp.com/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
+    fetch(
+      "https://mybestflix-9620fb832942.herokuapp.com/login?Username=" +
+        username +
+        "&Password=" +
+        password,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((response) => {
         console.log(response);
         return response.json(); // parse JSON from the response
