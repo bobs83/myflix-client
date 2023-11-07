@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import "./login-view.scss";
+import { Container, Row, Col } from "react-bootstrap";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -43,32 +47,51 @@ export const LoginView = ({ onLoggedIn }) => {
         alert("Something went wrong");
       });
   };
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:{" "}
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-          required
-          minLength={4}
-        />
-      </label>
-      <label>
-        Password:{" "}
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          required
-        />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
-  );
-};
+	return (
+		<Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
+			<Row>
+					<Form onSubmit={handleSubmit}>
+						<div className="text-center mb-4">
+							<h2>Sign in</h2>
+						</div>
+	
+						<Form.Group controlId="formUsername" className="mb-3">
+							<Form.Control
+								type="text"
+								placeholder="Username *"
+								value={username}
+								onChange={(e) => setUsername(e.target.value)}
+								required
+								minLength="3"
+								className="mb-3"
+							/>
+						</Form.Group>
+	
+						<Form.Group controlId="formPassword" className="mb-3">
+							<Form.Control
+								type="password"
+								placeholder="Password *"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+								required
+             		className="mb-3"
+								
+							/>
+						</Form.Group>
+	
+						<Form.Group controlId="formRememberMe" className="mb-3">
+							<Form.Check type="checkbox" label="Remember me" />
+						</Form.Group>
+	
+						<Button variant="primary" type="submit" className="w-100 mb-3">
+							Sign In
+						</Button>
+	
+						<div className="text-center">
+							<a href="#forgot-password" className="text-decoration-none me-2">Forgot password?</a>
+							<a href="#signup" className="text-decoration-none">Don't have an account?</a>
+						</div>
+					</Form>
+			</Row>
+		</Container>
+	);
