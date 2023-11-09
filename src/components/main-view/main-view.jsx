@@ -74,13 +74,47 @@ export const MainView = () => {
                 <hr />
               </Row>
               <Row>
-                <SimilarMoviesView
-                  movies={movies}
-                  selectedMovie={selectedMovie}
-                />
+                <Col md={12}>
+                  <h2 className="mb-3">Similar Movies</h2>
+                </Col>
+              </Row>
+              <Row className="justify-content-md-center">
+                {movies
+                  .filter(
+                    (movie) =>
+                      movie.id !== selectedMovie.id &&
+                      movie.genre === selectedMovie.genre
+                  )
+                  .map((movie) => (
+                    <Col
+                      key={movie.id}
+                      xs={12}
+                      s={10}
+                      md={6}
+                      lg={4}
+                      xl={3}
+                      className="mb-5"
+                    >
+                      <MovieCard
+                        movie={movie}
+                        onMovieClick={(newSelectedMovie) => {
+                          setSelectedMovie(newSelectedMovie);
+                        }}
+                      />
+                    </Col>
+                  ))}
               </Row>
             </Col>
           ) : (
+            //////////////////////////////////////////////
+            // <Row>
+            // {/* <SimilarMoviesView
+            //   movies={movies}
+            //   selectedMovie={selectedMovie}
+            // /> */}
+            // </Row>
+            //</Col>
+            //////////////////////////////////////////////
             <>
               {movies.length === 0 ? (
                 <Col>
