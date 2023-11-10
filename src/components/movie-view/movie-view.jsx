@@ -1,9 +1,11 @@
-import PropTypes from "prop-types";
 import React from "react";
+import { Link, useParams } from "react-router-dom";
 import "./movie-view.scss";
 import { Button, Container, Row, Col } from "react-bootstrap";
 
-function MovieView({ movie, onBackClick }) {
+export const MovieView = ({ movies }) => {
+  const { movieID } = useParams();
+  const movie = movies.find((movie) => movie._id === movieID);
   return (
     <Container>
       <Row className="my-5">
@@ -26,26 +28,13 @@ function MovieView({ movie, onBackClick }) {
           <p className="text-muted">{movie.director.bio}</p>
         </Col>
         <Col md={12} className="mb-2">
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <Button class="btn btn-primary" onClick={onBackClick}>
-              Back
-            </Button>
+          <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+            <Link to={`/`}>
+              <button className="btn btn-primary">Back</button>
+            </Link>
           </div>
         </Col>
       </Row>
     </Container>
   );
-}
-
-MovieView.propTypes = {
-  movie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    director: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      bio: PropTypes.string,
-    }),
-  }),
-  onBackClick: PropTypes.func.isRequired,
 };
-export { MovieView };
