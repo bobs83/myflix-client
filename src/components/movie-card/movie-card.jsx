@@ -6,18 +6,23 @@ import "./movie-card.scss";
 
 export const MovieCard = ({ movie }) => {
   return (
-    <Card>
-      <Card.Img variant="top" src={movie.imageURL} alt={movie.title} />
-      <Card.Body>
-        <Card.Title>{movie.title}</Card.Title>
-        <Card.Text>{movie.description}</Card.Text>
-        <div>
-          <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
-            <Button variant="primary">See more</Button>
-          </Link>
-        </div>
-      </Card.Body>
-    </Card>
+    <Link
+      to={`/movies/${encodeURIComponent(movie.id)}`}
+      className="text-decoration-none"
+    >
+      <Card>
+        <Card.Img variant="top" src={movie.imageURL} alt={movie.title} />
+        <Card.Body>
+          <Card.Title>{movie.title}</Card.Title>
+          <Card.Text>{movie.description}</Card.Text>
+          {/* <div>
+            <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
+              <Button variant="primary">See more</Button>
+            </Link>
+          </div> */}
+        </Card.Body>
+      </Card>
+    </Link>
   );
 };
 
