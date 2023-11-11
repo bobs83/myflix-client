@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
+import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import "./login-view.scss";
-import { Container, Row, Col } from "react-bootstrap";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -55,7 +54,8 @@ export const LoginView = ({ onLoggedIn }) => {
       <Row>
         <Form onSubmit={handleSubmit}>
           <div className="text-center mb-4">
-            <h2>Sign in</h2>
+            <h1>Welcome to MyFlix</h1>
+            <h6>To get started, please sign in</h6>
           </div>
 
           <Form.Group controlId="formUsername" className="mb-3">
@@ -90,12 +90,12 @@ export const LoginView = ({ onLoggedIn }) => {
           </Button>
 
           <div className="text-center">
-            <a href="#forgot-password" className="text-decoration-none me-2">
+            {/* <Link to="/forgot-password" className="text-decoration-none me-2">
               Forgot password?
-            </a>
-            <a href="#signup" className="text-decoration-none">
+            </Link> */}
+            <Link to="/signup" className="text-decoration-none">
               Don't have an account?
-            </a>
+            </Link>
           </div>
         </Form>
       </Row>
