@@ -40,7 +40,10 @@ export const SignupView = () => {
       style={{ minHeight: "100vh" }}
     >
       <Row>
-        <h2 className="text-center mb-4">Sign up</h2>
+        <div className="text-center mb-4">
+          <h1>Unlock Your Access</h1>
+          <h6>A few quick details and you're in</h6>
+        </div>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formSignupUsername" className="mb-3">
             <Form.Control
@@ -60,6 +63,7 @@ export const SignupView = () => {
               placeholder="Password *"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              minLength="4"
               required
               className="mb-3"
             />
