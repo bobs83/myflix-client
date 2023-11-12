@@ -3,6 +3,7 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
+import { ProfileView } from "../profile-view/profile-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { Row, Col } from "react-bootstrap";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
@@ -136,6 +137,32 @@ export const MainView = () => {
                       </Col>
                     ))}
                   </>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <Col>
+                    <Row>
+                      <ProfileView
+                        user={user}
+                        token={token}
+                        setUser={setUser}
+                        movies={movies}
+                        onDelete={() => {
+                          setUser(null);
+                          setToken(null);
+                          localStorage.clear();
+                        }}
+                      />
+                    </Row>
+                  </Col>
                 )}
               </>
             }
