@@ -5,9 +5,10 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { FavoriteMovies } from "../favorite-movies/favorite-movies";
+//import { SimilarMoviesView } from "../similar-movies-view/similar-movies-view";
 import { Row, Col } from "react-bootstrap";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-//import { SimilarMoviesView } from "../similar-movies-view/similar-movies-view";
 
 export const MainView = () => {
   const storedUser = localStorage.getItem("user"); //works as as it should
@@ -44,6 +45,13 @@ export const MainView = () => {
         console.error("Error fetching movies:", error);
       });
   }, [token]);
+
+  // Logout, reset state and clear browser storage
+  const onLoggedOut = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.clear();
+  };
 
   return (
     <BrowserRouter>
@@ -167,6 +175,25 @@ export const MainView = () => {
               </>
             }
           />
+          {/* <Route
+            path="/favorites"
+            element={
+              <>
+                {!user ? (
+                  // If no user is logged in, redirect to the login page
+                  <Navigate to="/login" replace />
+                ) : (
+                  // If a user is logged in, display the FavoriteMovies component
+                  <FavoriteMovies
+                    user={user}
+                    token={token}
+                    setUser={setUser}
+                    movies={movies}
+                  />
+                )}
+              </>
+            }
+          /> */}
         </Routes>
       </Row>
     </BrowserRouter>
