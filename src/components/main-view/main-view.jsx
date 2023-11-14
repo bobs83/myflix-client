@@ -6,17 +6,23 @@ import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { FavoriteMovies } from "../favorite-movies/favorite-movies";
-//import { SimilarMoviesView } from "../similar-movies-view/similar-movies-view";
 import { Row, Col } from "react-bootstrap";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 export const MainView = () => {
   const storedUser = localStorage.getItem("user"); //works as as it should
   const storedToken = localStorage.getItem("token");
+  console.log(storedUser);
 
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
+
+  const onLoggedOut = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.clear();
+  };
 
   useEffect(() => {
     fetch("https://mybestflix-9620fb832942.herokuapp.com/movies", {
@@ -45,13 +51,6 @@ export const MainView = () => {
         console.error("Error fetching movies:", error);
       });
   }, [token]);
-
-  // Logout, reset state and clear browser storage
-  const onLoggedOut = () => {
-    setUser(null);
-    setToken(null);
-    localStorage.clear();
-  };
 
   return (
     <BrowserRouter>
@@ -100,7 +99,8 @@ export const MainView = () => {
           />
           {/* Route for viewing a specific movie */}
           <Route
-            path="/movies/:movie_Id"
+            path="/movies/:movieId"
+            // worked partly when i change the name to anything elese but movieID - can can see the movie_id change in params but the page is stuck star wars episode V fo rall movies
             element={
               <>
                 {!user ? (
@@ -175,7 +175,7 @@ export const MainView = () => {
               </>
             }
           />
-          {/* <Route
+          <Route
             path="/favorites"
             element={
               <>
@@ -193,7 +193,7 @@ export const MainView = () => {
                 )}
               </>
             }
-          /> */}
+          />
         </Routes>
       </Row>
     </BrowserRouter>
