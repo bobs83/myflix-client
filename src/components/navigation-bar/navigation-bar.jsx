@@ -2,9 +2,10 @@ import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
-  const handleLogout = () => {
+  const onLoggedOut = () => {
+    setUser(null);
+    setToken(null);
     localStorage.clear();
-    onLoggedOut();
   };
 
   return (
@@ -36,7 +37,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
                 </Nav.Link>
                 <Button
                   variant="btn btn-sm btn-outline-secondary"
-                  onClick={handleLogout}
+                  onClick={onLoggedOut}
                 >
                   Logout
                 </Button>

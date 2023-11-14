@@ -16,6 +16,8 @@ export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
   console.log("User prop in ProfileView:", user);
   console.log(onLoggedOut);
   const [username, setUsername] = useState(user.Username);
+  const [favoriteMovies, setFavoriteMovies] = useState(user.FavoriteMovies);
+  console.log(user.FavoriteMovies);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState(user.Email);
   const [birthday, setBirthday] = useState(user.Birthday);
@@ -33,10 +35,21 @@ export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
     Username: username,
     Email: email,
     Birthday: birthday,
+    FavoriteMovies: favoriteMovies,
   };
+
+  console.log(data);
+
   if (password) {
     data["Password"] = password;
   }
+
+  // Logout, reset state and clear browser storage
+  // const onLoggedOut = () => {
+  //   setUser(null);
+  //   setToken(null);
+  //   localStorage.clear();
+  // };
 
   // Function to handle the delete action
   const handleDelete = () => {
@@ -52,7 +65,11 @@ export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
         // Display a success message
         alert("Your account has been deleted");
         // Redirect to the sign-in page
-        onLoggedOut();
+        onLoggedOut = () => {
+          setUser(null);
+          setToken(null);
+          localStorage.clear();
+        };
       } else {
         alert("Something went wrong.");
       }
