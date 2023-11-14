@@ -1,11 +1,16 @@
 import React from "react";
+import { SimilarMoviesView } from "../similar-movies-view/similar-movies-view";
+import { Row, Col, Container } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
-import { Button, Container, Row, Col } from "react-bootstrap";
 import "./movie-view.scss";
 
 export const MovieView = ({ movies }) => {
   const { movieID } = useParams();
   const movie = movies.find((movie) => movie._id === movieID);
+
+  console.log(movieID);
+  //undefined
+
   return (
     <Container>
       <Row className="my-5">
@@ -34,6 +39,7 @@ export const MovieView = ({ movies }) => {
             </Link>
           </div>
         </Col>
+        <SimilarMoviesView movies={movies} />
       </Row>
     </Container>
   );
