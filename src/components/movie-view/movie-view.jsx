@@ -5,10 +5,10 @@ import { Link, useParams } from "react-router-dom";
 import "./movie-view.scss";
 
 export const MovieView = ({ movies }) => {
-  const { movieID } = useParams();
-  const movie = movies.find((movie) => movie._id === movieID);
+  const { movieId } = useParams();
+  const movie = movies.find((movie) => movie.id === movieId);
 
-  console.log(movieID);
+  console.log(movieId);
   //undefined
 
   return (

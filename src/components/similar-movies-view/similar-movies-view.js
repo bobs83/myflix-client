@@ -5,12 +5,11 @@ import "../movie-card/movie-card.scss";
 import { useParams } from "react-router";
 
 export function SimilarMoviesView({ movies }) {
-  const { movieID } = useParams();
-  const selectedMovie = movies.find((item) => item._id === movieID);
+  const { movieId } = useParams();
+  const selectedMovie = movies.find((item) => item.id === movieId);
 
   let SimilarMovies = movies.filter(
-    (movie) =>
-      movie._id !== movieID && movie.Genre.Name === selectedMovie?.Genre?.Name
+    (movie) => movie.id !== movieId && movie.genre === selectedMovie.genre
   );
 
   return (
