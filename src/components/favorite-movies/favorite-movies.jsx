@@ -16,10 +16,9 @@ export const FavoriteMovies = ({ user, token, setUser, movies }) => {
   let result = movies.filter((movie) =>
     user.FavoriteMovies.includes(movie._id)
   );
-  console.log(result);
-  // have gotten an empty array back
 
-  // Assuming 'movies' is the array of favorite movies passed as a prop
+  if (result.length === 0) return <p>You have no favorite movies yet!</p>;
+
   return (
     <>
       <Container>
