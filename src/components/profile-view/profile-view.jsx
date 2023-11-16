@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import "./profile-view.scss";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
   console.log("User prop in ProfileView:", user);
   console.log(onLoggedOut);
@@ -20,7 +21,7 @@ export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
   console.log(user.FavoriteMovies);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState(user.Email);
-  const [birthday, setBirthday] = useState(user.Birthday);
+  const [birthday, setBirthday] = useState(user.Birthday || "");
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const navigate = useNavigate(); // Add this line to create the navigate function
 
@@ -43,37 +44,34 @@ export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
   if (password) {
     data["Password"] = password;
   }
-
-  // Logout, reset state and clear browser storage
-  // const onLoggedOut = () => {
-  //   setUser(null);
-  //   setToken(null);
-  //   localStorage.clear();
-  // };
-
+  console.log("Token:", token);
   // Function to handle the delete action
   const handleDelete = () => {
-    fetch(`https://mybestflix-9620fb832942.herokuapp.com/users/${username}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).then((response) => {
-      if (response.ok) {
-        // Update the user state to reflect that they're no longer logged in
-        setUser(null);
-        // Display a success message
-        alert("Your account has been deleted");
-        // Redirect to the sign-in page
-        onLoggedOut = () => {
+    axios
+      .delete(
+        `https://mybestflix-9620fb832942.herokuapp.com/users/${username}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        if (response.ok) {
+          // Update the user state to reflect that they're no longer logged in
           setUser(null);
-          setToken(null);
-          localStorage.clear();
-        };
-      } else {
-        alert("Something went wrong.");
-      }
-    });
+          // Display a success message
+          alert("Your account has been deleted");
+          // Redirect to the sign-in page
+          onLoggedOut = () => {
+            setUser(null);
+            setToken(null);
+            localStorage.clear();
+          };
+        } else {
+          alert("Something went wrong.");
+        }
+      });
     handleClose(); // Close the modal after deletion
   };
 
@@ -88,34 +86,32 @@ export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
       birthday === user.Birthday &&
       !password
     ) {
-      // Optionally alert the user
       alert("No changes detected in the profile.");
       return; // Stop the function here
     }
-    // Log the fetch URL for debugging
-    console.log(
-      `Fetching URL: https://mybestflix-9620fb832942.herokuapp.com/users/${user.Username}`
-    );
-    console.log("User prop before fetch:", user);
-    fetch(`https://mybestflix-9620fb832942.herokuapp.com/users/${username}`, {
-      method: "PUT",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    }).then(async (response) => {
-      if (response.ok) {
-        const updatedUser = await response.json();
+
+    axios
+      .put(
+        `https://mybestflix-9620fb832942.herokuapp.com/users/${username}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(async (response) => {
+        const updatedUser = response.data;
         localStorage.setItem("user", JSON.stringify(updatedUser));
         setUser(updatedUser);
         setFeedbackMessage("Profile updated successfully!");
-      } else {
-        const errorMsg = await response.text();
+      })
+      .catch((error) => {
+        const errorMsg = error.response.data;
         setFeedbackMessage(`Update failed: ${errorMsg}`);
-      }
-    });
+      });
   };
+
   return (
     <Container
       className="d-flex justify-content-center align-items-center"

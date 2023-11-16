@@ -7,6 +7,7 @@ import { ProfileView } from "../profile-view/profile-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { FavoriteMovies } from "../favorite-movies/favorite-movies";
 import { Row, Col } from "react-bootstrap";
+import axios from "axios";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 export const MainView = () => {
@@ -25,13 +26,15 @@ export const MainView = () => {
   };
 
   useEffect(() => {
-    fetch("https://mybestflix-9620fb832942.herokuapp.com/movies", {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Movies from API:", data);
-        const moviesFromApi = data.map((movie) => {
+    if (!token) return; // Do not proceed if there's no token
+
+    axios
+      .get("https://mybestflix-9620fb832942.herokuapp.com/movies", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        console.log("Movies from API:", response.data);
+        const moviesFromApi = response.data.map((movie) => {
           return {
             id: movie._id,
             title: movie.Title,
