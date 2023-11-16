@@ -1,12 +1,15 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./signup-view.scss";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import axios from "axios";
 
 export const SignupView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
+  const navigate = useNavigate(); // Define the navigate function
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -18,20 +21,20 @@ export const SignupView = () => {
       Birthday: birthday,
     };
 
-    fetch("https://mybestflix-9620fb832942.herokuapp.com/users", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((response) => {
-      if (response.ok) {
-        alert("Signup successful");
-        window.location.reload();
-      } else {
-        alert("Signup failed");
-      }
-    });
+    axios
+      .post("https://mybestflix-9620fb832942.herokuapp.com/users", data)
+      .then((response) => {
+        // Log the entire response to see its structure
+        console.log("Response from server:", response);
+
+        // Check if the response contains a message and display it
+        const successMessage = response.data.message || "Signup successful";
+        alert(successMessage);
+        navigate("/login");
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   };
 
   return (
@@ -92,7 +95,12 @@ export const SignupView = () => {
           <Button variant="primary" type="submit" className="w-100 mb-2">
             SIGN UP
           </Button>
-          <Button variant="secondary" className="w-100">
+
+          <Button
+            variant="secondary"
+            className="w-100"
+            onClick={() => navigate("/login")}
+          >
             CANCEL
           </Button>
         </Form>
