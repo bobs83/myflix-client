@@ -6,6 +6,8 @@ import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { FavoriteMovies } from "../favorite-movies/favorite-movies";
+//import { AddFavorite } from "../AddFavorite/Addfavorite";
+import { MovieCarousel } from "../movie-carousel/movie-carousel";
 import { Row, Col } from "react-bootstrap";
 import axios from "axios";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
@@ -114,7 +116,7 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   // If movies are available, display the MovieView component
-                  <Col md={8}>
+                  <Col md={12}>
                     <MovieView movies={movies} />
                   </Col>
                 )}
@@ -135,6 +137,7 @@ export const MainView = () => {
                 ) : (
                   // Display a list of movies using the MovieCard component
                   <>
+                    <MovieCarousel movies={movies} />
                     {movies.map((movie) => (
                       <Col
                         xs={12}
