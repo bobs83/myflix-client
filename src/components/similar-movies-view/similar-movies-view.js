@@ -22,7 +22,7 @@ export function SimilarMoviesView({ movies }) {
       <Row className="justify-content-md-center">
         {SimilarMovies.map((movie) => (
           <Col
-            key={movie._id} // Use _id for key, as it's unique to every movie
+            key={movie.id}
             xs={12}
             sm={10}
             md={6}
@@ -30,7 +30,7 @@ export function SimilarMoviesView({ movies }) {
             xl={3}
             className="mb-5"
           >
-            <MovieCard key={movie._id} movie={movie} />
+            <MovieCard movie={movie} />
           </Col>
         ))}
       </Row>

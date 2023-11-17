@@ -185,7 +185,7 @@ export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
             </Col>
           </Form.Group>
 
-          <Button variant="primary" type="submit" className="w-100">
+          <Button variant="primary" type="submit" className="w-100 mb-3">
             UPDATE
           </Button>
 
