@@ -1,23 +1,25 @@
-/* Layout container adjustments for consistency */
 .card {
+  position: relative;
   cursor: pointer;
   margin-bottom: 0px !important; /* Adjusts gap between cards if needed */
   height: 100% !important;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   background: #eaeaea;
+  border-radius: 0.5rem;
 }
 
-.card-img-top {
-  height: 200px !important; /* Adjust height */
-  object-fit: cover !important;
+.card:hover {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  transform: scale(1.02);
 }
 
 .card-body {
-  min-height: 200px !important; /* Minimum height for the card body */
+  margin-bottom: 0.1em;
 }
 
 .card-title {
-  font-size: 1.25em;
+  font-size: 1em;
 }
 
 .card-text {
@@ -25,6 +27,59 @@
   color: #666;
 }
 
-.btn {
-  margin-top: 10px;
+.image-container {
+  position: relative;
+}
+
+.card-img-top {
+  transition: all 0.3s ease-in-out;
+}
+
+.overlay-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7); // Semi-transparent black background
+  color: white;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container:hover .overlay-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.movie-description {
+  text-align: center;
+  padding: 20px;
+}
+
+.card:hover {
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.card-body {
+  margin-bottom: 0.1em;
+}
+
+.card-title {
+  font-size: 1em;
+}
+
+.card-text {
+  margin: 10px 10px 16px;
+  color: #666;
+}
+
+.span {
+  font-weight: bold;
+  font-size: 1.2em;
 }

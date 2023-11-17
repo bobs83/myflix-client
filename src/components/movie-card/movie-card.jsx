@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button, Card, Container } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./movie-card.scss";
+import { AddFavorite } from "../AddFavorite/Addfavorite";
 
 export const MovieCard = ({ movie }) => {
   return (
@@ -11,15 +12,24 @@ export const MovieCard = ({ movie }) => {
       className="text-decoration-none"
     >
       <Card>
-        <Card.Img variant="top" src={movie.imageURL} alt={movie.title} />
+        <div className="image-container">
+          <Card.Img
+            variant="top"
+            src={movie.imageURL}
+            alt={movie.title}
+            className="card-img-top"
+          />
+          <div className="overlay-content">
+            <div className="movie-description">
+              {movie.description} {/* Add the movie description here */}
+            </div>
+          </div>
+        </div>
         <Card.Body>
           <Card.Title>{movie.title}</Card.Title>
-          <Card.Text>{movie.description}</Card.Text>
-          {/* <div>
-            <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
-              <Button variant="primary">See more</Button>
-            </Link>
-          </div> */}
+          <span className="badge rounded-pill text-bg-light">
+            {movie.genre} | IMDB {movie.rate} | Year {movie.release}
+          </span>
         </Card.Body>
       </Card>
     </Link>
