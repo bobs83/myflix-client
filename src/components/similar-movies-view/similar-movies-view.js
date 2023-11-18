@@ -28,7 +28,7 @@ export function SimilarMoviesView({ movies }) {
             md={6}
             lg={4}
             xl={3}
-            className="mb-5"
+            className="mb-5 d-flex justify-content-center"
           >
             <MovieCard movie={movie} />
           </Col>

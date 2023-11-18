@@ -11,6 +11,7 @@ import { MovieCarousel } from "../movie-carousel/movie-carousel";
 import { Row, Col } from "react-bootstrap";
 import axios from "axios";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import "./main-view.scss";
 
 export const MainView = () => {
   const storedUser = localStorage.getItem("user"); //works as as it should

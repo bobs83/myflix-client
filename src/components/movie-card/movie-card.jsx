@@ -20,14 +20,16 @@ export const MovieCard = ({ movie }) => {
             className="card-img-top"
           />
           <div className="overlay-content">
-            <div className="movie-description">
-              {movie.description} {/* Add the movie description here */}
-            </div>
+            <div className="movie-description">{movie.description}</div>
           </div>
         </div>
+
         <Card.Body>
+          <div className="body-overlay">
+            <AddFavorite />
+          </div>
           <Card.Title>{movie.title}</Card.Title>
-          <span className="badge rounded-pill text-bg-light">
+          <span className="badge rounded-pill text-bg-primary movie-info">
             {movie.genre} | IMDB {movie.rate} | Year {movie.release}
           </span>
         </Card.Body>

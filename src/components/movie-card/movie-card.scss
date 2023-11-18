@@ -1,11 +1,14 @@
+/* Card Container Styles */
 .card {
   position: relative;
   cursor: pointer;
-  margin-bottom: 0px !important; /* Adjusts gap between cards if needed */
+  margin-bottom: 0 !important;
   height: 100% !important;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   background: #eaeaea;
   border-radius: 0.5rem;
+  min-width: 800px;
+  transition: all 0.4s ease-in-out;
 }
 
 .card:hover {
@@ -14,19 +17,53 @@
   transform: scale(1.02);
 }
 
+/* Card Body Styles */
+
 .card-body {
   margin-bottom: 0.1em;
+  // height: 150px; /* Fixed height or you can use min-height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers content vertically */
+  align-items: center; /* Centers content horizontally */
 }
 
 .card-title {
   font-size: 1em;
+  white-space: nowrap; /* Prevents the title from wrapping */
+  overflow: hidden; /* Ensures overflow text is not visible */
+  text-overflow: ellipsis; /* Adds an ellipsis for overflow text */
+  text-align: center; /* Centers the text horizontally */
+  width: 100%; /* Ensure the title spans the full width of the card */
 }
 
 .card-text {
-  margin: 10px 10px 16px;
   color: #666;
 }
 
+/* Body Overlay Styles */
+.body-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transform: translateY(100%); /* Start hidden below the card body */
+  background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+  color: white;
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px; /* Adjust padding as needed */
+}
+
+.card-body:hover .body-overlay {
+  transform: translateY(0); /* Slide up to show */
+  opacity: 1;
+}
+
+/* Image Container Styles */
 .image-container {
   position: relative;
 }
@@ -35,13 +72,14 @@
   transition: all 0.3s ease-in-out;
 }
 
+/* Overlay Content Styles */
 .overlay-content {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7); // Semi-transparent black background
+  background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
   color: white;
   visibility: hidden;
   opacity: 0;
@@ -56,30 +94,8 @@
   opacity: 1;
 }
 
+/* Movie Description Styles */
 .movie-description {
   text-align: center;
   padding: 20px;
-}
-
-.card:hover {
-  cursor: pointer;
-  transition: all 0.5s ease-in-out;
-}
-
-.card-body {
-  margin-bottom: 0.1em;
-}
-
-.card-title {
-  font-size: 1em;
-}
-
-.card-text {
-  margin: 10px 10px 16px;
-  color: #666;
-}
-
-.span {
-  font-weight: bold;
-  font-size: 1.2em;
 }
