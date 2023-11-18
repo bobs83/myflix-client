@@ -1,7 +1,34 @@
-import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  Navbar,
+  Nav,
+  Container,
+  Button,
+  Form,
+  FormControl,
+} from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHome,
+  faUserLock,
+  faHeart,
+  faSignInAlt,
+  faUserPlus,
+  faSignOutAlt,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
+import "../navigation-bar/navigation-bar.scss";
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    // Add search logic here
+    console.log("Searching for:", searchTerm);
+  };
+
   return (
     <Navbar
       bg="light"
@@ -20,36 +47,82 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
             {user ? (
               // Links for authenticated users
               <>
-                <Nav.Link as={Link} to="/" className="text-secondary">
-                  Home 🏠
-                </Nav.Link>
-                <Nav.Link as={Link} to="/profile" className="text-secondary">
-                  Profile 🔐
-                </Nav.Link>
-                <Nav.Link as={Link} to="/favorites" className="text-secondary">
-                  Favorite Movies ❣️
-                </Nav.Link>
-                <Button
-                  variant="btn btn-sm btn-outline-secondary"
-                  onClick={onLoggedOut}
+                <Nav.Link
+                  as={Link}
+                  to="/"
+                  className="text-secondary nav-link-hover"
                 >
-                  Logout
-                </Button>
+                  <FontAwesomeIcon icon={faHome} className="navbar-icon" /> Home
+                </Nav.Link>
+                <Nav.Link
+                  as={Link}
+                  to="/profile"
+                  className="text-secondary nav-link-hover"
+                >
+                  <FontAwesomeIcon icon={faUserLock} className="navbar-icon" />{" "}
+                  Profile
+                </Nav.Link>
+                <Nav.Link
+                  as={Link}
+                  to="/favorites"
+                  className="text-secondary nav-link-hover"
+                >
+                  <FontAwesomeIcon icon={faHeart} className="navbar-icon" />{" "}
+                  Favorite Movies
+                </Nav.Link>
               </>
             ) : (
               // Links for unauthenticated users
               <>
-                <Nav.Link as={Link} to="/login" className="text-secondary">
+                <Nav.Link
+                  as={Link}
+                  to="/login"
+                  className="text-secondary nav-link-hover"
+                >
+                  <FontAwesomeIcon icon={faSignInAlt} className="navbar-icon" />{" "}
                   Login
                 </Nav.Link>
-                <Nav.Link as={Link} to="/signup" className="text-secondary">
+                <Nav.Link
+                  as={Link}
+                  to="/signup"
+                  className="text-secondary nav-link-hover"
+                >
+                  <FontAwesomeIcon icon={faUserPlus} className="navbar-icon" />{" "}
                   Signup
                 </Nav.Link>
               </>
             )}
           </Nav>
+          {user && (
+            <Form
+              inline
+              onSubmit={handleSearch}
+              className="ml-auto navbar-search"
+            >
+              <div className="search-container">
+                <FormControl
+                  type="text"
+                  placeholder="Search"
+                  className="search-input"
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <FontAwesomeIcon icon={faSearch} className="search-icon" />
+              </div>
+            </Form>
+          )}
+          {user && (
+            <Button
+              variant="btn btn-sm btn-outline-secondary logout-button"
+              onClick={onLoggedOut}
+            >
+              <FontAwesomeIcon icon={faSignOutAlt} className="navbar-icon" />{" "}
+              Logout
+            </Button>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
 };
+
+export default NavigationBar;
