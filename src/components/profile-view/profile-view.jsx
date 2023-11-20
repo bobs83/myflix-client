@@ -16,8 +16,8 @@ import axios from "axios";
 export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
   console.log("User prop in ProfileView:", user);
   console.log(onLoggedOut);
-  const [username, setUsername] = useState(user.Username);
-  const [favoriteMovies, setFavoriteMovies] = useState(user.FavoriteMovies);
+  const [username = "", setUsername] = useState(user.Username);
+  const [FavoriteMovies, setFavoriteMovies] = useState(user.FavoriteMovies);
   console.log(user.FavoriteMovies);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState(user.Email);
@@ -36,7 +36,7 @@ export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
     Username: username,
     Email: email,
     Birthday: birthday,
-    FavoriteMovies: favoriteMovies,
+    FavoriteMovies: FavoriteMovies,
   };
 
   console.log(data);
