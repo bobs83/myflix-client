@@ -1,0 +1,38 @@
+/* Search-related styles */
+.search-box {
+  position: relative;
+  margin-right: 20px; /* Space to the right of the search box */
+}
+
+.search-input {
+  padding-left: 30px; /* Make room for the icon */
+}
+
+.search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #aaa; /* Adjust the color as needed */
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search-container .form-control {
+  flex-grow: 1;
+  padding-right: 30px; /* Adjust this based on the icon size */
+}
+
+/* Responsive design adjustments */
+@media (max-width: 991px) {
+  .search-box {
+    margin-top: 10px; /* Space above the search box when collapsed */
+    width: 100%;
+    margin-right: 0; /* Remove right margin in collapsed mode */
+  }
+}

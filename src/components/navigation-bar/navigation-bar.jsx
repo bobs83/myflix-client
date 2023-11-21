@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import {SearchView } from "../search-view/search-view
 import {
   Navbar,
   Nav,
@@ -20,15 +21,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "../navigation-bar/navigation-bar.scss";
 
-export const NavigationBar = ({ user, onLoggedOut }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const handleSearch = (event) => {
-    event.preventDefault();
-    // Add search logic here
-    console.log("Searching for:", searchTerm);
-  };
-
+export const NavigationBar = ({ user, handleSearch,  onLoggedOut }) => {
+	
   return (
     <Navbar
       bg="light"
@@ -94,21 +88,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
             )}
           </Nav>
           {user && (
-            <Form
-              inline
-              onSubmit={handleSearch}
-              className="ml-auto navbar-search"
-            >
-              <div className="search-container">
-                <FormControl
-                  type="text"
-                  placeholder="Search"
-                  className="search-input"
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <FontAwesomeIcon icon={faSearch} className="search-icon" />
-              </div>
-            </Form>
+           <SearchView onSearch={handleSearch} />
           )}
           {user && (
             <Button

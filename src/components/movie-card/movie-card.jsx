@@ -7,14 +7,21 @@ import { AddFavorite } from "../add-favorite/add-favorite";
 import { RemoveFavourite } from "../remove-favourite/remove-favourite";
 import { useEffect, useState } from "react";
 
-export const MovieCard = ({ movie, token, user }) => {
+export const MovieCard = ({ movie, token, user, setUser }) => {
+  // const user = localStorage.getItem("user");
+  //user = JSON.parse(user);
   const [isFavorite, setIsFavorite] = useState(false);
 
-  useEffect(() => {
-    if (user.FavoriteMovies && user.FavoriteMovies.includes(movie.id)) {
-      setIsFavorite(true);
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user.FavoriteMovies && user.FavoriteMovies.includes(movie.id)) {
+  //     setIsFavorite(true);
+  //   }
+  // }, [user]);
+
+  // Cant get this part to work !!!
+
+  console.log(user);
+  //console.log(user.FavoriteMovies); //undefined
 
   const addFavoriteMovie = () => {
     fetch(
@@ -32,7 +39,7 @@ export const MovieCard = ({ movie, token, user }) => {
         if (user) {
           alert("successfully added to favorites");
           localStorage.setItem("user", JSON.stringify(user));
-          updatedUser(user);
+          setUser(user);
           setIsFavorite(true);
         }
       })
@@ -62,8 +69,11 @@ export const MovieCard = ({ movie, token, user }) => {
 
         <Card.Body>
           <div className="body-overlay">
-            <AddFavorite onClick={() => addFavoriteMovie(movie)} />
-            {/* <RemoveFavourite /> */}
+            {!isFavorite ? (
+              <AddFavorite onClick={(() => alert("Nice!"), addFavoriteMovie)} />
+            ) : (
+              <RemoveFavourite /> //onClick={() =>removeFavoriteMovie}
+            )}
           </div>
           <Card.Title>{movie.title}</Card.Title>
           <span className="badge rounded-pill text-bg-primary movie-info">
