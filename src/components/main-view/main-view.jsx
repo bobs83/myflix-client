@@ -6,7 +6,7 @@ import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { FavoriteMovies } from "../favorite-movies/favorite-movies";
-//import { AddFavorite } from "../AddFavorite/Addfavorite";
+import { AddFavorite } from "../add-favorite/add-favorite";
 import { MovieCarousel } from "../movie-carousel/movie-carousel";
 import { Row, Col } from "react-bootstrap";
 import axios from "axios";
@@ -14,12 +14,17 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./main-view.scss";
 
 export const MainView = () => {
-  const storedUser = localStorage.getItem("user"); //works as as it should
+  //Keeps stored information for user with localStorage
   const storedToken = localStorage.getItem("token");
-  console.log(storedUser);
+  const storedUser = JSON.parse(localStorage.getItem("user")); //added this one!
 
+  //state put movies from API into an array
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState(storedUser ? storedUser : null);
+  //const parseUser = JSON.parse(storedUser)
+  //const [user, setUser] = useState(storedUser ? parseUser : null); / What happining here?
+
+  //keeps track of tokens once a user logs in and stores it in storedToken state
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
   const onLoggedOut = () => {
@@ -28,9 +33,15 @@ export const MainView = () => {
     localStorage.clear();
   };
 
+  const handleSearch = (search, movies) => {
+    const filteredMovies = movies.filter((movie) =>
+      movie.title.toLowerCase().includes(search.toLowerCase())
+    );
+    setMovies(filteredMovies);
+  };
+
   useEffect(() => {
     if (!token) return; // Do not proceed if there's no token
-
     axios
       .get("https://mybestflix-9620fb832942.herokuapp.com/movies", {
         headers: { Authorization: `Bearer ${token}` },
@@ -97,7 +108,12 @@ export const MainView = () => {
                 ) : (
                   // If no user is logged in, display the LoginView component
                   <Col xs={12} sm={8} md={6} lg={4} className="mx-auto">
-                    <LoginView onLoggedIn={(user) => setUser(user)} />
+                    <LoginView
+                      onLoggedIn={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                      }}
+                    />
                   </Col>
                 )}
               </>
@@ -169,7 +185,6 @@ export const MainView = () => {
                         user={user}
                         token={token}
                         setUser={setUser}
-                        movies={movies}
                         onDelete={() => {
                           setUser(null);
                           setToken(null);
@@ -192,7 +207,7 @@ export const MainView = () => {
                 ) : (
                   // If a user is logged in, display the FavoriteMovies component
                   <FavoriteMovies
-                    user={user}
+                    user={user} //{JSON.parse(user)} // getting SyntaxError: "[object Object]" is not valid JSON
                     token={token}
                     setUser={setUser}
                     movies={movies}

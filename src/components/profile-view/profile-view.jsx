@@ -44,6 +44,7 @@ export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
   if (password) {
     data["Password"] = password;
   }
+
   console.log("Token:", token);
   // Function to handle the delete action
   const handleDelete = () => {

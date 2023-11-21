@@ -12,7 +12,7 @@ export const FavoriteMovies = ({ user, token, setUser, movies }) => {
   // seems to work fine
   console.log(user.FavoriteMovies);
   // undefined sometimes, but sometimes it works fine, (when i am not connected with server?)
-  user = JSON.parse(user);
+
   //user.FavoriteMovie = user.FavoriteMovies;
   let result = movies.filter((movie) => user.FavoriteMovies.includes(movie.id));
 
