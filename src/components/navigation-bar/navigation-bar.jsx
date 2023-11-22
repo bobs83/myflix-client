@@ -21,7 +21,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "../navigation-bar/navigation-bar.scss";
 
-export const NavigationBar = ({ user, handleSearch,  onLoggedOut }) => {
+export const NavigationBar = ({ user, handleSearch, onLoggedOut }) => {
 	
   return (
     <Navbar

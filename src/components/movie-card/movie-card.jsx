@@ -7,25 +7,24 @@ import { AddFavorite } from "../add-favorite/add-favorite";
 import { RemoveFavourite } from "../remove-favourite/remove-favourite";
 import { useEffect, useState } from "react";
 
-export const MovieCard = ({ movie, token, user, setUser }) => {
-  // const user = localStorage.getItem("user");
-  //user = JSON.parse(user);
+export const MovieCard = ({ movie }) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
 
-  // useEffect(() => {
-  //   if (user.FavoriteMovies && user.FavoriteMovies.includes(movie.id)) {
-  //     setIsFavorite(true);
-  //   }
-  // }, [user]);
-
-  // Cant get this part to work !!!
-
-  console.log(user);
-  //console.log(user.FavoriteMovies); //undefined
+  useEffect(() => {
+    if (user.FavoriteMovies && user.FavoriteMovies.includes(movie.id)) {
+      setIsFavorite(true);
+    }
+  }, [user]);
 
   const addFavoriteMovie = () => {
+    const user = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+    let username = JSON.parse(user).Username;
+    alert(JSON.stringify(username));
+
     fetch(
-      `https://mybestflix-9620fb832942.herokuapp.com/users/${username}${movie.id}`,
+      `https://mybestflix-9620fb832942.herokuapp.com/users/${username}/movies/${movie.id}`,
       { method: "POST", headers: { Authorization: `Bearer ${token}` } }
     )
       .then((response) => {
@@ -37,8 +36,8 @@ export const MovieCard = ({ movie, token, user, setUser }) => {
       })
       .then((user) => {
         if (user) {
-          alert("successfully added to favorites");
           localStorage.setItem("user", JSON.stringify(user));
+          alert("successfully added to favorites");
           setUser(user);
           setIsFavorite(true);
         }
@@ -47,6 +46,36 @@ export const MovieCard = ({ movie, token, user, setUser }) => {
         alert(error);
       });
     console.log(user);
+  };
+
+  const removeFavoriteMovie = () => {
+    const user = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+    let username = JSON.parse(user).Username;
+    alert(JSON.stringify(username));
+
+    fetch(
+      `https://mybestflix-9620fb832942.herokuapp.com/users/${username}/movies/${movie.id}`,
+      { method: "DELETE", headers: { Authorization: `Bearer ${token}` } }
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          alert("Failed");
+        }
+      })
+      .then((user) => {
+        if (user) {
+          localStorage.setItem("user", JSON.stringify(user));
+          alert("successfully deleted from favorites");
+          setUser(user);
+          setIsFavorite(false);
+        }
+      })
+      .catch((error) => {
+        alert(error);
+      });
   };
 
   return (
@@ -70,9 +99,9 @@ export const MovieCard = ({ movie, token, user, setUser }) => {
         <Card.Body>
           <div className="body-overlay">
             {!isFavorite ? (
-              <AddFavorite onClick={(() => alert("Nice!"), addFavoriteMovie)} />
+              <AddFavorite /> // alert("Nice you added a movie!"), onClick={() =>addFavoriteMovie}
             ) : (
-              <RemoveFavourite /> //onClick={() =>removeFavoriteMovie}
+              <RemoveFavourite /> // alert("Nice you removed a movie!") onClick={() =>removeFavoriteMovie}
             )}
           </div>
           <Card.Title>{movie.title}</Card.Title>
@@ -84,6 +113,8 @@ export const MovieCard = ({ movie, token, user, setUser }) => {
     </Link>
   );
 };
+
+export default MovieCard;
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
