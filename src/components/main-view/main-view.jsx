@@ -207,7 +207,7 @@ export const MainView = () => {
                 ) : (
                   // If a user is logged in, display the FavoriteMovies component
                   <FavoriteMovies
-                    user={user} //{JSON.parse(user)} // getting SyntaxError: "[object Object]" is not valid JSON
+                    user={user}
                     token={token}
                     setUser={setUser}
                     movies={movies}

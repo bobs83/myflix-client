@@ -99,9 +99,9 @@ export const MovieCard = ({ movie }) => {
         <Card.Body>
           <div className="body-overlay">
             {!isFavorite ? (
-              <AddFavorite /> // alert("Nice you added a movie!"), onClick={() =>addFavoriteMovie}
+              <AddFavorite /> // onClick={(() => alert("Nice you added a movie!"), addFavoriteMovie)
             ) : (
-              <RemoveFavourite /> // alert("Nice you removed a movie!") onClick={() =>removeFavoriteMovie}
+              <RemoveFavourite /> //onClick={(() => alert("Nice you removed a movie!"), removeFavoriteMovie)
             )}
           </div>
           <Card.Title>{movie.title}</Card.Title>

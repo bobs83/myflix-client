@@ -8,9 +8,6 @@ export const MovieView = ({ movies }) => {
   const { movieId } = useParams();
   const movie = movies.find((movie) => movie.id === movieId);
 
-  console.log(movieId);
-  //undefined
-
   return (
     <Container>
       <Row className="my-5">
