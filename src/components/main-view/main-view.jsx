@@ -6,7 +6,7 @@ import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { FavoriteMovies } from "../favorite-movies/favorite-movies";
-import { AddFavorite } from "../add-favorite/add-favorite";
+//import { AddFavorite } from "../add-favorite/add-favorite";
 import { MovieCarousel } from "../movie-carousel/movie-carousel";
 import { Row, Col } from "react-bootstrap";
 import axios from "axios";
@@ -22,7 +22,7 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState(storedUser ? storedUser : null);
   //const parseUser = JSON.parse(storedUser)
-  //const [user, setUser] = useState(storedUser ? parseUser : null); / What happining here?
+  //const [user, setUser] = useState(storedUser ? parseUser : null); /
 
   //keeps track of tokens once a user logs in and stores it in storedToken state
   const [token, setToken] = useState(storedToken ? storedToken : null);

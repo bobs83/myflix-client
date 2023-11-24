@@ -92,7 +92,7 @@ export const MovieCard = ({ movie }) => {
           <Link
             to={`/movies/${encodeURIComponent(movie.id)}`}
             className="text-decoration-none"
-            style={{ textDecoration: "none", color: "white" }} // Inline style added here
+            style={{ textDecoration: "none", color: "white" }}
           >
             <div className="movie-description">{movie.description}</div>
           </Link>
