@@ -3,10 +3,9 @@ import PropTypes from "prop-types";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./movie-card.scss";
-// import { AddFavorite } from "../add-favorite/add-favorite";
-// import { RemoveFavourite } from "../remove-favourite/remove-favourite";
+import { AddFavorite } from "../add-favorite/add-favorite";
+import { RemoveFavourite } from "../remove-favourite/remove-favourite";
 import { useEffect, useState } from "react";
-import { Card, Button } from "react-bootstrap";
 
 export const MovieCard = ({ movie }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -82,19 +81,21 @@ export const MovieCard = ({ movie }) => {
   return (
     <Card>
       <div className="image-container">
-        <Link
-          to={`/movies/${encodeURIComponent(movie.id)}`}
-          className="text-decoration-none"
-        >
-          <Card.Img
-            variant="top"
-            src={movie.imageURL}
-            alt={movie.title}
-            className="card-img-top"
-          />
-        </Link>
+        <Card.Img
+          variant="top"
+          src={movie.imageURL}
+          alt={movie.title}
+          className="card-img-top"
+        />
+
         <div className="overlay-content">
-          <div className="movie-description">{movie.description}</div>
+          <Link
+            to={`/movies/${encodeURIComponent(movie.id)}`}
+            className="text-decoration-none"
+            style={{ textDecoration: "none", color: "white" }} // Inline style added here
+          >
+            <div className="movie-description">{movie.description}</div>
+          </Link>
         </div>
       </div>
 
