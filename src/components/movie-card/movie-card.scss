@@ -99,3 +99,19 @@
   text-align: center;
   padding: 20px;
 }
+
+.smaller-button {
+  padding: 2px 5px;
+  font-size: 10px;
+}
+
+.heart-icon-overlay {
+  position: absolute;
+  top: 7%; /* Adjust as needed */
+  right: 5%; /* Adjust as needed */
+  width: 1.2em; /* Adjust size relative to font size */
+  height: 1.2em; /* Adjust size relative to font size */
+  opacity: 0.9;
+  z-index: -1; /* Added opacity */
+  fill: rgb(255, 0, 0); /* Adjust color as needed */
+}
