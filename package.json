@@ -1,4 +1,10 @@
 {
+  "name": "github",
+  "version": "1.0.0",
+  "description": "myflix-client",
+  "main": "index.js",
+  "author": "Bobby Singh",
+  "license": "ISC",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
