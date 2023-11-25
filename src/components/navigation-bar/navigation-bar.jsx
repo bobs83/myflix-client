@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {SearchView } from "../search-view/search-view
+import { SearchView } from "../search-view/search-view";
 import {
   Navbar,
   Nav,
@@ -22,7 +22,6 @@ import {
 import "../navigation-bar/navigation-bar.scss";
 
 export const NavigationBar = ({ user, handleSearch, onLoggedOut }) => {
-	
   return (
     <Navbar
       bg="light"
@@ -87,9 +86,7 @@ export const NavigationBar = ({ user, handleSearch, onLoggedOut }) => {
               </>
             )}
           </Nav>
-          {user && (
-           <SearchView onSearch={handleSearch} />
-          )}
+          {user && <SearchView onSearch={handleSearch} />}
           {user && (
             <Button
               variant="btn btn-sm btn-outline-secondary logout-button"
