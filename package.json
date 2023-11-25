@@ -25,9 +25,9 @@
     "react-router-dom": "^6.18.0"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.10.3",
+    "@parcel/transformer-sass": "^2.9.3",
     "buffer": "^6.0.3",
-    "parcel": "^2.10.3",
+    "parcel": "^2.9.3",
     "process": "^0.11.10"
   }
 }
