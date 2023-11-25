@@ -4,9 +4,9 @@
 logs
 **/*.backup.*
 **/*.back.*
-src/dist/
-dist/
-/dist
+# src/dist/
+# dist/
+# /dist
 
 node_modules
 bower_components
@@ -19,4 +19,4 @@ bower_components
 psd
 thumb
 sketch
-dist/index.html
+# dist/index.html
