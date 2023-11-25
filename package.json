@@ -2,7 +2,7 @@
   "name": "github",
   "version": "1.0.0",
   "description": "myflix-client",
-  "main": "index.js",
+  "main": "",
   "author": "Bobby Singh",
   "license": "ISC",
   "dependencies": {
