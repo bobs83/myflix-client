@@ -1,14 +1,9 @@
 {
-  "name": "github",
-  "version": "1.0.0",
-  "description": "myflix-client",
-  "main": "",
-  "author": "Bobby Singh",
-  "license": "ISC",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@parcel/cache": "^2.10.3",
     "@parcel/plugin": "^2.10.3",
     "@parcel/reporter-dev-server": "^2.10.3",
     "@parcel/utils": "^2.10.3",
@@ -24,9 +19,9 @@
     "react-router-dom": "^6.18.0"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.10.3",
+    "@parcel/transformer-sass": "^2.9.3",
     "buffer": "^6.0.3",
-    "parcel": "^2.10.3",
+    "parcel": "^2.9.3",
     "process": "^0.11.10"
   }
 }
