@@ -1,4 +1,14 @@
 {
+  "name": "github",
+  "version": "1.0.0",
+  "description": "myflix-client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel src/index.html --open"
+  },
+  "author": "Bobby Singh",
+  "license": "ISC",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",

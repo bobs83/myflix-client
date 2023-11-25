@@ -39,6 +39,13 @@ export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
     FavoriteMovies: FavoriteMovies,
   };
 
+  let birth = new Date(birthday);
+  let birthString = birth.toLocaleDateString("sv-SE", {
+    month: "numeric",
+    day: "numeric",
+    year: "numeric",
+  });
+
   console.log(data);
 
   if (password) {
@@ -180,7 +187,7 @@ export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
             <Col sm={10}>
               <Form.Control
                 type="date"
-                value={birthday}
+                value={birthString}
                 onChange={(e) => setBirthday(e.target.value)}
               />
             </Col>
