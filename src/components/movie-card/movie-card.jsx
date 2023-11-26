@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./movie-card.scss";
-import { AddFavorite } from "../add-favorite/add-favorite";
-import { RemoveFavourite } from "../remove-favourite/remove-favourite";
+// import { AddFavorite } from "../add-favorite/add-favorite";
+// import { RemoveFavourite } from "../remove-favourite/remove-favourite";
 import { useEffect, useState } from "react";
 
 export const MovieCard = ({ movie }) => {
@@ -37,7 +37,7 @@ export const MovieCard = ({ movie }) => {
       .then((user) => {
         if (user) {
           localStorage.setItem("user", JSON.stringify(user));
-          alert("successfully added to favorites");
+          //alert("successfully added to favorites");
           setUser(user);
           setIsFavorite(true);
         }
@@ -68,7 +68,7 @@ export const MovieCard = ({ movie }) => {
       .then((user) => {
         if (user) {
           localStorage.setItem("user", JSON.stringify(user));
-          alert("successfully deleted from favorites");
+          //alert("successfully deleted from favorites");
           setUser(user);
           setIsFavorite(false);
         }
@@ -123,11 +123,11 @@ export const MovieCard = ({ movie }) => {
               width="12" // Further reduced size
               height="12" // Further reduced size
               fill="currentColor"
-              class="bi bi-heart-fill"
+              className="bi bi-heart-fill"
               viewBox="0 0 16 16"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
               />
             </svg>

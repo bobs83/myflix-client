@@ -10,14 +10,15 @@ import { faFilm } from "@fortawesome/free-solid-svg-icons";
 
 export const FavoriteMovies = ({ token, movies }) => {
   const [user, setUser] = useState(null);
+  const storedUser = localStorage.getItem("user");
 
   useEffect(() => {
     // Load user data from local storage
-    const storedUser = localStorage.getItem("user");
+
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
-  }, [user]);
+  }, []); // Only run once on page load (empty array of dependencies)
 
   let result = movies.filter(
     (movie) => user && user.FavoriteMovies.includes(movie.id)
