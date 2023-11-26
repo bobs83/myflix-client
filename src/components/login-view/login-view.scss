@@ -8,3 +8,24 @@
 .auth-form .text-center a:hover {
   text-decoration: underline; /* Adds underline on hover for better user experience */
 }
+
+.password-group {
+  position: relative;
+}
+
+.password-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.password-icon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+
+.password-container .form-control {
+  flex-grow: 1;
+  padding-right: 30px; // Adjust this based on icon size
+}

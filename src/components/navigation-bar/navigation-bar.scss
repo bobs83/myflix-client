@@ -1,0 +1,48 @@
+/* General styles */
+.navbar-icon {
+  margin-right: 5px;
+}
+
+/* Navbar link hover effect styles */
+.nav-link-hover {
+  position: relative; /* Needed for positioning the pseudo-element */
+  transition: color 0.3s ease; /* Transition for color */
+}
+
+.nav-link-hover::after {
+  content: "";
+  position: absolute;
+  bottom: 0px; /* Adjust as needed */
+  left: 0;
+  width: 0; /* Start with no underline */
+  height: 1.5px; /* Thickness of the underline */
+  background-color: #007bff; /* Color of the underline */
+  transition: width 0.3s ease; /* Transition for the underline */
+}
+
+.nav-link-hover:hover {
+  color: #007bff; /* Change color on hover */
+}
+
+.nav-link-hover:hover::after {
+  width: 100%; /* Extend underline on hover */
+}
+
+/* Logout button styles */
+.logout-button {
+  margin-left: 20px; /* Space to the left of the Logout button */
+  height: calc(
+    1.5em + 0.75rem + 2px
+  ); /* Adjust height to match the search input */
+  display: flex;
+  align-items: center; /* Center the content vertically */
+}
+
+/* Responsive design adjustments */
+@media (max-width: 991px) {
+  .logout-button {
+    margin-top: 10px; /* Space above the Logout button when collapsed */
+    width: 100%;
+    margin-left: 0; /* Remove left margin in collapsed mode */
+  }
+}

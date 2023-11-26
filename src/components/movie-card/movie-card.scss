@@ -1,54 +1,117 @@
-/* Layout container adjustments for consistency */
-.cards-layout {
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 20px; /* Adjusts gap between cards */
-}
-
-.card-container {
+/* Card Container Styles */
+.card {
+  position: relative;
   cursor: pointer;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  overflow: hidden;
+  margin-bottom: 0 !important;
+  height: 100% !important;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   background: #eaeaea;
-  display: inline-block;
+  border-radius: 0.5rem;
+  min-width: 800px;
+  transition: all 0.4s ease-in-out;
 }
 
-.card-image img {
-  width: 100%;
-  height: 200px; /* Adjust height automatically based on the aspect ratio of the image */
-  aspect-ratio: 3 / 4; /* Sets a fixed aspect ratio for the images */
-  object-fit: cover;
-  margin-bottom: 15px; /* Add space below the image */
+.card:hover {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  transform: scale(1.02);
 }
+
+/* Card Body Styles */
 
 .card-body {
-  height: 100%;
+  margin-bottom: 0.1em;
+  // height: 150px; /* Fixed height or you can use min-height */
   display: flex;
-  flex-direction: column; /* Stack the card body contents vertically */
-  justify-content: space-between; /* Space out the contents evenly */
-  flex-grow: 1; /* Allow the card body to fill the space */
-  padding: 16px;
-  min-height: 200px; /* Minimum height for the card body */
+  flex-direction: column;
+  justify-content: center; /* Centers content vertically */
+  align-items: center; /* Centers content horizontally */
 }
 
 .card-title {
-  margin: 10;
-  margin-bottom: 8px; /* Space between title and text */
-  font-size: 1.25em;
+  font-size: 1em;
+  white-space: nowrap; /* Prevents the title from wrapping */
+  overflow: hidden; /* Ensures overflow text is not visible */
+  text-overflow: ellipsis; /* Adds an ellipsis for overflow text */
+  text-align: center; /* Centers the text horizontally */
+  width: 100%; /* Ensure the title spans the full width of the card */
 }
 
 .card-text {
-  margin: 10px;
-  margin-bottom: 16px; /* Space between text and button */
   color: #666;
 }
 
-.card-button {
-  margin-top: auto; /* Push the button to the bottom */
-  cursor: pointer;
-  margin-bottom: 10px; /* Add space below the button if necessary */
+/* Body Overlay Styles */
+.body-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transform: translateY(100%); /* Start hidden below the card body */
+  background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+  color: white;
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px; /* Adjust padding as needed */
+}
+
+.card-body:hover .body-overlay {
+  transform: translateY(0); /* Slide up to show */
+  opacity: 1;
+}
+
+/* Image Container Styles */
+.image-container {
+  position: relative;
+}
+
+.card-img-top {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Overlay Content Styles */
+.overlay-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  color: white;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container:hover .overlay-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Movie Description Styles */
+.movie-description {
+  text-align: center;
+  padding: 20px;
+}
+
+.smaller-button {
+  padding: 2px 5px;
+  font-size: 10px;
+}
+
+.heart-icon-overlay {
+  position: absolute;
+  top: 7%; /* Adjust as needed */
+  right: 5%; /* Adjust as needed */
+  width: 1.2em; /* Adjust size relative to font size */
+  height: 1.2em; /* Adjust size relative to font size */
+  opacity: 0.9;
+  z-index: -1; /* Added opacity */
+  fill: rgb(255, 0, 0); /* Adjust color as needed */
 }

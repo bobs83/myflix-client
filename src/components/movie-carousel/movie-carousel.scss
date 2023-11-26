@@ -1,0 +1,38 @@
+/* Ensuring the carousel takes the full width of the container */
+.carousel {
+  width: 100%;
+  margin: 1em auto;
+}
+
+/* Adjusting the height of each carousel item */
+.carousel-item {
+  height: 600px; /* Set a fixed height */
+}
+
+/* Ensuring images cover the carousel item area */
+.carousel-item img {
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  object-fit: cover; /* Cover the area, maintaining aspect ratio */
+}
+
+/* Overlay Style */
+.carousel-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white; /* Text color */
+}
+
+/* Styling the carousel caption for better readability */
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.6); /* Dark background for the text */
+  padding: 10px;
+  border-radius: 5px;
+}

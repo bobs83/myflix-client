@@ -1,0 +1,13 @@
+.modal-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* This targets the SVG element rendered by FontAwesomeIcon */
+.modal-icon-container .svg-inline--fa {
+  font-size: 5rem; /* Large icon size */
+  color: #dc3545; /* Bootstrap's `$danger` color */
+  margin-right: 15px;
+}

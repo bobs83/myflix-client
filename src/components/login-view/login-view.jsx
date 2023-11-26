@@ -1,12 +1,30 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
+import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import "./login-view.scss";
-import { Container, Row, Col } from "react-bootstrap";
+
+import { Icon } from "react-icons-kit";
+import { eye } from "react-icons-kit/feather/eye";
+import { eyeOff } from "react-icons-kit/feather/eyeOff";
+
+import axios from "axios";
+//was not able to insert axios
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [type, setType] = useState("password");
+  const [icon, setIcon] = useState(eyeOff);
+
+  const handleToggle = () => {
+    if (type === "password") {
+      setIcon(eye);
+      setType("text");
+    } else {
+      setIcon(eyeOff);
+      setType("password");
+    }
+  };
 
   const handleSubmit = (event) => {
     // this prevents the default behavior of the form which is to reload the entire page
@@ -47,6 +65,7 @@ export const LoginView = ({ onLoggedIn }) => {
         alert("Something went wrong");
       });
   };
+
   return (
     <Container
       className="d-flex align-items-center justify-content-center"
@@ -55,13 +74,14 @@ export const LoginView = ({ onLoggedIn }) => {
       <Row>
         <Form onSubmit={handleSubmit}>
           <div className="text-center mb-4">
-            <h2>Sign in</h2>
+            <h1>Welcome to MyFlix</h1>
+            <h6>To get started, please sign in</h6>
           </div>
 
           <Form.Group controlId="formUsername" className="mb-3">
             <Form.Control
               type="text"
-              placeholder="Username *"
+              placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -70,19 +90,19 @@ export const LoginView = ({ onLoggedIn }) => {
             />
           </Form.Group>
 
-          <Form.Group controlId="formPassword" className="mb-3">
-            <Form.Control
-              type="password"
-              placeholder="Password *"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="mb-3"
-            />
-          </Form.Group>
-
-          <Form.Group controlId="formRememberMe" className="mb-3">
-            <Form.Check type="checkbox" label="Remember me" />
+          <Form.Group controlId="formPassword" className="mb-3 password-group">
+            <div className="password-container">
+              <Form.Control
+                type={type}
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <span onClick={handleToggle} className="password-icon">
+                <Icon icon={icon} size={20} />
+              </span>
+            </div>
           </Form.Group>
 
           <Button variant="primary" type="submit" className="w-100 mb-3">
@@ -90,12 +110,12 @@ export const LoginView = ({ onLoggedIn }) => {
           </Button>
 
           <div className="text-center">
-            <a href="#forgot-password" className="text-decoration-none me-2">
+            {/* <Link to="/forgot-password" className="text-decoration-none me-2">
               Forgot password?
-            </a>
-            <a href="#signup" className="text-decoration-none">
+            </Link> */}
+            <Link to="/signup" className="text-decoration-none">
               Don't have an account?
-            </a>
+            </Link>
           </div>
         </Form>
       </Row>
