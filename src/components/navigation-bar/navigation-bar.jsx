@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {SearchView } from "../search-view/search-view
+import {SearchView } from "../search-view/search-view";
 import {
   Navbar,
   Nav,
