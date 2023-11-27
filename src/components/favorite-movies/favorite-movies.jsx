@@ -26,9 +26,12 @@ export const FavoriteMovies = ({ token, movies }) => {
 
   if (result.length === 0) {
     return (
-      <Container>
+      <Container
+        className="d-flex align-items-center justify-content-center"
+        style={{ minHeight: "100vh" }}
+      >
         <Row className="justify-content-center mt-5">
-          <Col xs={12} sm={10} md={8} lg={6}>
+          <Col>
             <Alert variant="info" className="text-center py-4">
               <FontAwesomeIcon icon={faFilm} size="3x" className="mb-3" />
               <h4>You have no favorite movies yet!</h4>
