@@ -21,7 +21,7 @@ export const MovieCard = ({ movie }) => {
     const user = localStorage.getItem("user");
     const token = localStorage.getItem("token");
     let username = JSON.parse(user).Username;
-    alert(JSON.stringify(username));
+    // alert(JSON.stringify(username));
 
     fetch(
       `https://mybestflix-9620fb832942.herokuapp.com/users/${username}/movies/${movie.id}`,
@@ -52,7 +52,7 @@ export const MovieCard = ({ movie }) => {
     const user = localStorage.getItem("user");
     const token = localStorage.getItem("token");
     let username = JSON.parse(user).Username;
-    alert(JSON.stringify(username));
+    // alert(JSON.stringify(username));
 
     fetch(
       `https://mybestflix-9620fb832942.herokuapp.com/users/${username}/movies/${movie.id}`,

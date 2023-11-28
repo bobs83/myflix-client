@@ -20,6 +20,8 @@ export const FavoriteMovies = ({ token, movies }) => {
     }
   }, []); // Only run once on page load (empty array of dependencies)
 
+  // I want the view to update imeediately after a movie has been deleted from the favorites list???
+
   let result = movies.filter(
     (movie) => user && user.FavoriteMovies.includes(movie.id)
   );
