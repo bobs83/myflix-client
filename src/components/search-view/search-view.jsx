@@ -27,6 +27,7 @@ export const SearchView = ({ onSearch }) => {
           type="text"
           placeholder="Search"
           value={searchItem}
+          placeholder="Find your movie"
           className="search-input"
           onChange={handleSearchChange}
         />
