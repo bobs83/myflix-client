@@ -6,6 +6,8 @@ import "./movie-card.scss";
 // import { AddFavorite } from "../add-favorite/add-favorite";
 // import { RemoveFavourite } from "../remove-favourite/remove-favourite";
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 export const MovieCard = ({ movie }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -109,9 +111,16 @@ export const MovieCard = ({ movie }) => {
             // )}
           </div> */}
         <Card.Title>{movie.title}</Card.Title>
-        <span className="badge rounded-pill text-bg-primary movie-info mb-1">
-          {movie.genre} | IMDb {movie.rate} | {movie.year}
+
+        <span className="badge rounded-pill text-bg-primary movie-info mb-1 ms-2">
+          {movie.genre}
+          <span className="ms-1">| </span>
+          {movie.year}
+          <span className="ms-1">| </span>
+          <FontAwesomeIcon icon={faStar} style={{ fontSize: "0.9em" }} />
+          <span className="ms-1">{movie.rate}</span>
         </span>
+
         {!isFavorite ? (
           <Button
             className="btn btn-light btn-sm d-flex align-items-center gap-2 smaller-button"

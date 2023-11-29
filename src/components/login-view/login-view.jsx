@@ -65,7 +65,7 @@ export const LoginView = ({ onLoggedIn }) => {
         alert("Something went wrong");
       });
   };
-
+  // I know its not best practice to send data over the params but I was not able to get it to work also failed to insert axios
   return (
     <Container
       className="d-flex align-items-center justify-content-center"

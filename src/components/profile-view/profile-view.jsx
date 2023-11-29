@@ -14,14 +14,12 @@ import "./profile-view.scss";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-/// I want the user data in the folder comes back when you hit refresh on the profile page - its empty now
-
 export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
   console.log("User prop in ProfileView:", user);
   console.log(onLoggedOut);
   const [username, setUsername] = useState(user.Username);
   const [FavoriteMovies, setFavoriteMovies] = useState(user.FavoriteMovies);
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("user.Password");
   const [email, setEmail] = useState(user.Email);
   const [birthday, setBirthday] = useState(user.Birthday || "");
   const [feedbackMessage, setFeedbackMessage] = useState("");
@@ -36,6 +34,7 @@ export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
 
   let data = {
     Username: username,
+    Password: password,
     Email: email,
     Birthday: birthday,
     FavoriteMovies: FavoriteMovies,
@@ -125,14 +124,9 @@ export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
               Username
             </Form.Label>
             <Col sm={10}>
-              <Form.Control
-                type="text"
-                placeholder="Enter username"
-                defaultValue={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-                minLength="3"
-              />
+              <div className="username-display">
+                <strong>{username}</strong>
+              </div>
             </Col>
           </Form.Group>
 
@@ -149,7 +143,7 @@ export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
                 minLength="4"
               />
               <Form.Text className="text-muted">
-                Leave blank if you do not wish to change the password.
+                Leave password as is if change is not desired.
               </Form.Text>
             </Col>
           </Form.Group>

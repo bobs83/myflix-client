@@ -11,3 +11,8 @@
   color: #dc3545; /* Bootstrap's `$danger` color */
   margin-right: 15px;
 }
+
+.username-display {
+  /* Aligns text vertically with the form label */
+  line-height: 38px; /* Adjust as needed based on your form's styling */
+}

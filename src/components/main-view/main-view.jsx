@@ -156,10 +156,8 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   // Display a list of movies using the MovieCard component
-
                   <>
                     <MovieCarousel movies={movies} />
-
                     {movies.map((movie) => (
                       <Col
                         xs={12}
