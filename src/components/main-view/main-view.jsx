@@ -8,6 +8,7 @@ import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { FavoriteMovies } from "../favorite-movies/favorite-movies";
 import { AddFavorite } from "../add-favorite/add-favorite";
 import { MovieCarousel } from "../movie-carousel/movie-carousel";
+import { SearchView } from "../search-view/search-view";
 import { Row, Col } from "react-bootstrap";
 import axios from "axios";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
@@ -54,6 +55,8 @@ export const MainView = () => {
             title: movie.Title,
             imageURL: movie.ImageURL,
             description: movie.Description,
+            year: movie.Year,
+            rate: movie.Rate,
             actors: movie.Actors,
             genre: movie.Genre.Name,
             director: {
@@ -153,8 +156,10 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   // Display a list of movies using the MovieCard component
+
                   <>
                     <MovieCarousel movies={movies} />
+
                     {movies.map((movie) => (
                       <Col
                         xs={12}

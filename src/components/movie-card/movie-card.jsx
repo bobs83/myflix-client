@@ -110,7 +110,7 @@ export const MovieCard = ({ movie }) => {
           </div> */}
         <Card.Title>{movie.title}</Card.Title>
         <span className="badge rounded-pill text-bg-primary movie-info mb-1">
-          {movie.genre} | IMDB {movie.rate} | Year {movie.release}
+          {movie.genre} | IMDb {movie.rate} | {movie.year}
         </span>
         {!isFavorite ? (
           <Button
