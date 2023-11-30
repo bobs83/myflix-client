@@ -10,14 +10,17 @@ import { faFilm } from "@fortawesome/free-solid-svg-icons";
 
 export const FavoriteMovies = ({ token, movies }) => {
   const [user, setUser] = useState(null);
+  const storedUser = localStorage.getItem("user");
 
   useEffect(() => {
     // Load user data from local storage
-    const storedUser = localStorage.getItem("user");
+
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
-  }, [user]);
+  }, []); // Only run once on page load (empty array of dependencies)
+
+  // I want the view to update imeediately after a movie has been deleted from the favorites list???
 
   let result = movies.filter(
     (movie) => user && user.FavoriteMovies.includes(movie.id)
@@ -25,9 +28,12 @@ export const FavoriteMovies = ({ token, movies }) => {
 
   if (result.length === 0) {
     return (
-      <Container>
+      <Container
+        className="d-flex align-items-center justify-content-center"
+        style={{ minHeight: "100vh" }}
+      >
         <Row className="justify-content-center mt-5">
-          <Col xs={12} sm={10} md={8} lg={6}>
+          <Col>
             <Alert variant="info" className="text-center py-4">
               <FontAwesomeIcon icon={faFilm} size="3x" className="mb-3" />
               <h4>You have no favorite movies yet!</h4>

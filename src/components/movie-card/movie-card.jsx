@@ -6,7 +6,8 @@ import "./movie-card.scss";
 // import { AddFavorite } from "../add-favorite/add-favorite";
 // import { RemoveFavourite } from "../remove-favourite/remove-favourite";
 import { useEffect, useState } from "react";
-import { Card, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 export const MovieCard = ({ movie }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -22,7 +23,7 @@ export const MovieCard = ({ movie }) => {
     const user = localStorage.getItem("user");
     const token = localStorage.getItem("token");
     let username = JSON.parse(user).Username;
-    alert(JSON.stringify(username));
+    // alert(JSON.stringify(username));
 
     fetch(
       `https://mybestflix-9620fb832942.herokuapp.com/users/${username}/movies/${movie.id}`,
@@ -38,7 +39,7 @@ export const MovieCard = ({ movie }) => {
       .then((user) => {
         if (user) {
           localStorage.setItem("user", JSON.stringify(user));
-          alert("successfully added to favorites");
+          //alert("successfully added to favorites");
           setUser(user);
           setIsFavorite(true);
         }
@@ -53,7 +54,7 @@ export const MovieCard = ({ movie }) => {
     const user = localStorage.getItem("user");
     const token = localStorage.getItem("token");
     let username = JSON.parse(user).Username;
-    alert(JSON.stringify(username));
+    // alert(JSON.stringify(username));
 
     fetch(
       `https://mybestflix-9620fb832942.herokuapp.com/users/${username}/movies/${movie.id}`,
@@ -69,7 +70,7 @@ export const MovieCard = ({ movie }) => {
       .then((user) => {
         if (user) {
           localStorage.setItem("user", JSON.stringify(user));
-          alert("successfully deleted from favorites");
+          //alert("successfully deleted from favorites");
           setUser(user);
           setIsFavorite(false);
         }
@@ -82,19 +83,21 @@ export const MovieCard = ({ movie }) => {
   return (
     <Card>
       <div className="image-container">
-        <Link
-          to={`/movies/${encodeURIComponent(movie.id)}`}
-          className="text-decoration-none"
-        >
-          <Card.Img
-            variant="top"
-            src={movie.imageURL}
-            alt={movie.title}
-            className="card-img-top"
-          />
-        </Link>
+        <Card.Img
+          variant="top"
+          src={movie.imageURL}
+          alt={movie.title}
+          className="card-img-top"
+        />
+
         <div className="overlay-content">
-          <div className="movie-description">{movie.description}</div>
+          <Link
+            to={`/movies/${encodeURIComponent(movie.id)}`}
+            className="text-decoration-none"
+            style={{ textDecoration: "none", color: "white" }} // Inline style added here
+          >
+            <div className="movie-description">{movie.description}</div>
+          </Link>
         </div>
       </div>
 
@@ -108,9 +111,16 @@ export const MovieCard = ({ movie }) => {
             // )}
           </div> */}
         <Card.Title>{movie.title}</Card.Title>
-        <span className="badge rounded-pill text-bg-primary movie-info mb-1">
-          {movie.genre} | IMDB {movie.rate} | Year {movie.release}
+
+        <span className="badge rounded-pill text-bg-primary movie-info mb-1 ms-2">
+          {movie.genre}
+          <span className="ms-1">| </span>
+          {movie.year}
+          <span className="ms-1">| </span>
+          <FontAwesomeIcon icon={faStar} style={{ fontSize: "0.9em" }} />
+          <span className="ms-1">{movie.rate}</span>
         </span>
+
         {!isFavorite ? (
           <Button
             className="btn btn-light btn-sm d-flex align-items-center gap-2 smaller-button"
@@ -122,11 +132,11 @@ export const MovieCard = ({ movie }) => {
               width="12" // Further reduced size
               height="12" // Further reduced size
               fill="currentColor"
-              class="bi bi-heart-fill"
+              className="bi bi-heart-fill"
               viewBox="0 0 16 16"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
               />
             </svg>

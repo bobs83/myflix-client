@@ -18,7 +18,7 @@ export const MovieView = ({ movies }) => {
             className="movie-poster img-fluid"
           />
         </Col>
-        <Col md={6}>
+        <Col md={5}>
           <h1 className="mb-3">{movie.title}</h1>
           <p className="text-muted">{movie.description}</p>
           <p className="mt-4">
@@ -30,7 +30,7 @@ export const MovieView = ({ movies }) => {
           <p className="text-muted">{movie.director.bio}</p>
         </Col>
         <Col md={12} className="mb-2">
-          <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+          <div className="d-grid gap-2 d-md-flex justify-content-md-end me-4">
             <Link to={`/`}>
               <button className="btn btn-primary">Back</button>
             </Link>

@@ -13,17 +13,17 @@ import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import "./profile-view.scss";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
   console.log("User prop in ProfileView:", user);
   console.log(onLoggedOut);
-  const [username = "", setUsername] = useState(user.Username);
+  const [username, setUsername] = useState(user.Username);
   const [FavoriteMovies, setFavoriteMovies] = useState(user.FavoriteMovies);
-  console.log(user.FavoriteMovies);
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("user.Password");
   const [email, setEmail] = useState(user.Email);
   const [birthday, setBirthday] = useState(user.Birthday || "");
   const [feedbackMessage, setFeedbackMessage] = useState("");
-  const navigate = useNavigate(); // Add this line to create the navigate function
+  const navigate = useNavigate();
 
   // State to control the visibility of the modal
   const [show, setShow] = useState(false);
@@ -34,12 +34,18 @@ export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
 
   let data = {
     Username: username,
+    Password: password,
     Email: email,
     Birthday: birthday,
     FavoriteMovies: FavoriteMovies,
   };
 
-  console.log(data);
+  let birth = new Date(birthday);
+  let birthString = birth.toLocaleDateString("sv-SE", {
+    month: "numeric",
+    day: "numeric",
+    year: "numeric",
+  });
 
   if (password) {
     data["Password"] = password;
@@ -58,29 +64,18 @@ export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
         }
       )
       .then((response) => {
-        if (response.ok) {
-          // Update the user state to reflect that they're no longer logged in
-          setUser(null);
-          // Display a success message
-          alert("Your account has been deleted");
-          // Redirect to the sign-in page
-          onLoggedOut = () => {
-            setUser(null);
-            setToken(null);
-            localStorage.clear();
-          };
-        } else {
-          alert("Something went wrong.");
-        }
+        setUser(null);
+        alert("Your account has been deleted");
+        onLoggedOut();
+      })
+      .catch((error) => {
+        alert("Something went wrong: " + error.message);
       });
     handleClose(); // Close the modal after deletion
   };
 
-  // note to self /// You should check the server-side code to verify if the password field is indeed marked as required for profile update requests.
-
   const handleUpdate = (event) => {
     event.preventDefault();
-    // Check if any form field has changed
     if (
       username === user.Username &&
       email === user.Email &&
@@ -88,7 +83,7 @@ export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
       !password
     ) {
       alert("No changes detected in the profile.");
-      return; // Stop the function here
+      return;
     }
 
     axios
@@ -129,14 +124,9 @@ export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
               Username
             </Form.Label>
             <Col sm={10}>
-              <Form.Control
-                type="text"
-                placeholder="Enter username"
-                defaultValue={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-                minLength="3"
-              />
+              <div className="username-display">
+                <strong>{username}</strong>
+              </div>
             </Col>
           </Form.Group>
 
@@ -153,7 +143,7 @@ export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
                 minLength="4"
               />
               <Form.Text className="text-muted">
-                Leave blank if you do not wish to change the password.
+                Leave password as is if change is not desired.
               </Form.Text>
             </Col>
           </Form.Group>
@@ -180,7 +170,7 @@ export const ProfileView = ({ user, token, setUser, onLoggedOut }) => {
             <Col sm={10}>
               <Form.Control
                 type="date"
-                value={birthday}
+                value={birthString}
                 onChange={(e) => setBirthday(e.target.value)}
               />
             </Col>

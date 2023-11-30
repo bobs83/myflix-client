@@ -12,6 +12,11 @@ export function SimilarMoviesView({ movies }) {
     (movie) => movie.id !== movieId && movie.genre === selectedMovie.genre
   );
 
+  // Check if there are similar movies
+  if (SimilarMovies.length === 0) {
+    return null;
+  }
+
   return (
     <Row>
       <Col md={12}>

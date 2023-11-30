@@ -25,7 +25,7 @@ export const SearchView = ({ onSearch }) => {
       <div className="search-container">
         <Form.Control
           type="text"
-          placeholder="Search"
+          placeholder="Find movie "
           value={searchItem}
           className="search-input"
           onChange={handleSearchChange}
