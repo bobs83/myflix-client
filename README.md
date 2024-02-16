@@ -1,18 +1,10 @@
 # myFlix React App
 
-# Table of Contents
+![login View](https://raw.githubusercontent.com/bobs83/myflix-client/main/readme-pics/Myflix-client-login.png)
 
-1. [Overview](#overview)
-2. [Features](#features)
-   1. [User Functionality](#user-functionality)
-   2. [Views](#views)
-   3. [Technical Specifications](#technical-specifications)
-3. [Technologies](#technologies)
-4. [Optional Features](#optional-features)
-5. [Design and User Experience](#design-and-user-experience)
-6. [Development and Contribution](#development-and-contribution)
-7. [Deployment](#deployment)
+![main view](https://raw.githubusercontent.com/bobs83/myflix-client/main/readme-pics/Myflix-app-full-view.png)
 
+![movies view](https://raw.githubusercontent.com/bobs83/myflix-client/main/readme-pics/Myflix-app-full-view-movies.png)
 ## Overview
 
 The myFlix React App is a client-side application built using React, designed to provide users with access to information about different movies. Users can create a profile, save their favorite movies, and access detailed information about each movie. This project complements an existing server-side and is a part of a full-stack MERN (MongoDB, Express, React, Node.js) stack application.
@@ -70,7 +62,8 @@ The myFlix React App is a client-side application built using React, designed to
 
 ## Deployment
 
-- The application is deployed online, and instructions for local setup and deployment are included.
+- [The application is deployed online](https://spiffy-starship-cff8a2.netlify.app/)
+  
 
 ---
 
