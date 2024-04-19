@@ -10,12 +10,7 @@ export const SearchView = ({ onSearch }) => {
   const handleSearchChange = (e) => {
     const newSearch = e.target.value;
     setSearchItem(newSearch);
-
-    if (newSearch === "") {
-      onSearch("");
-    } else {
-      onSearch(newSearch);
-    }
+    onSearch(newSearch);
   };
 
   // onsearch is not a function error

@@ -28,18 +28,26 @@ export const MainView = () => {
   //keeps track of tokens once a user logs in and stores it in storedToken state
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
+  const [searchTerm, setSearchTerm] = useState("")
+
   const onLoggedOut = () => {
     setUser(null);
     setToken(null);
     localStorage.clear();
   };
 
-  const handleSearch = (search, movies) => {
-    const filteredMovies = movies.filter((movie) =>
-      movie.title.toLowerCase().includes(search.toLowerCase())
-    );
-    setMovies(filteredMovies);
+
+  const handleSearch = (text) => {
+    setSearchTerm(text);
   };
+
+  const filteredResults = searchTerm
+    ? movies.filter(item =>
+        item.title.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : movies;
+  
+  
 
   useEffect(() => {
     if (!token) return; // Do not proceed if there's no token
@@ -80,6 +88,7 @@ export const MainView = () => {
           setUser(null);
           localStorage.clear();
         }}
+        handleSearch={handleSearch}
       />
       <Row className="justify-content-md-center">
         <Routes>
@@ -157,8 +166,8 @@ export const MainView = () => {
                 ) : (
                   // Display a list of movies using the MovieCard component
                   <>
-                    <MovieCarousel movies={movies} />
-                    {movies.map((movie) => (
+                    <MovieCarousel movies={filteredResults} />
+                    {filteredResults.map((movie) => (
                       <Col
                         xs={12}
                         sm={6}
