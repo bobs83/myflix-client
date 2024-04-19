@@ -9,6 +9,10 @@
 
 The myFlix React App is a client-side application built using React, designed to provide users with access to information about different movies. Users can create a profile, save their favorite movies, and access detailed information about each movie. This project complements an existing server-side and is a part of a full-stack MERN (MongoDB, Express, React, Node.js) stack application.
 
+## Deployment
+
+- [The application is deployed on Netlify](https://spiffy-starship-cff8a2.netlify.app/)
+  
 ## Features
 
 ### User Functionality
@@ -60,10 +64,6 @@ The myFlix React App is a client-side application built using React, designed to
 - This project emphasizes clean code practices and a thoughtful user experience design.
 - Contributions and feedback are welcome, following the provided contribution guidelines.
 
-## Deployment
-
-- [The application is deployed online](https://spiffy-starship-cff8a2.netlify.app/)
-  
 
 ---
 
