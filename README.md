@@ -27,7 +27,8 @@ The myFlix React App is a client-side application built using React, designed to
 - **Single Movie View**: Shows detailed information for a selected movie.
 - **Login View**: For user authentication.
 - **Signup View**: Allows new users to create an account.
-- **Profile View**: Displays user details, favorites, and allows profile editing.
+- **Profile View**: Displays user details, and allows profile editing.
+- **Favorite View**: Displays users favorite movies.
 
 ### Technical Specifications
 
@@ -35,7 +36,7 @@ The myFlix React App is a client-side application built using React, designed to
 - **Routing**: State routing for navigation and URL sharing
 - **Build Tool**: Parcel
 - **Tech Stack**: React (ES2015+), Bootstrap for UI styling
-- **Hosting**: The application is hosted online.
+- **Hosting**: The application is hosted on Netlify.
 
 ## Technologies
 
@@ -52,12 +53,11 @@ The myFlix React App is a client-side application built using React, designed to
 - Views for actors, genres, and directors with additional information.
 - Extended movie details in the Single Movie View.
 - Sorting functionality and additional lists in the Main View.
-- Use of React Redux for state management (optional).
 
 ## Design and User Experience
 
 - The app is responsive, ensuring a consistent user experience across all devices.
-- Wireframes for the application views are provided for design reference.
+  
 
 ## Development and Contribution
 
