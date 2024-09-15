@@ -44,7 +44,6 @@ The myFlix React App is a client-side application built using React, designed to
 - **Backend**: Express.js, Node.js
 - **Database**: MongoDB
 - **Authentication**: Passport.js
-- **State Management**: Redux (optional)
 - **Build Tool**: Parcel
 - **Version Control**: Git
 
