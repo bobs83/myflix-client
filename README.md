@@ -47,22 +47,14 @@ The myFlix React App is a client-side application built using React, designed to
 - **Build Tool**: Parcel
 - **Version Control**: Git
 
-## Optional Features
-
-- Views for actors, genres, and directors with additional information.
-- Extended movie details in the Single Movie View.
-- Sorting functionality and additional lists in the Main View.
-
 ## Design and User Experience
 
 - The app is responsive, ensuring a consistent user experience across all devices.
   
-
 ## Development and Contribution
 
 - This project emphasizes clean code practices and a thoughtful user experience design.
 - Contributions and feedback are welcome, following the provided contribution guidelines.
-
 
 ---
 
