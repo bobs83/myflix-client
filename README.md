@@ -35,7 +35,7 @@ The myFlix React App is a client-side application built using React, designed to
 - **Type**: Single-page Application (SPA)
 - **Routing**: State routing for navigation and URL sharing
 - **Build Tool**: Parcel
-- **Tech Stack**: React (ES2015+), Bootstrap for UI styling
+- **Tech Stack**: React, Bootstrap for UI styling
 - **Hosting**: The application is hosted on Netlify.
 
 ## Technologies
